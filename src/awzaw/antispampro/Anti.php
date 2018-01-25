@@ -87,7 +87,7 @@ class Anti extends PluginBase implements CommandExecutor, Listener {
             $e->setCancelled();
         } else {
             $this->players[spl_object_hash($e->getPlayer())] = array("time" => time(), "warnings" => 0);
-            if ($this->getConfig()->get("antiswearwords") && $this->profanityfilter->hasProfanity($e->getMessage())) {
+            if ($this->getConfig()->get("antiwords") && $this->profanityfilter->hasProfanity($e->getMessage())) {
                 $e->getPlayer()->sendMessage(TEXTFORMAT::RED . $this->getConfig()->get("swearmessage"));
                 $e->setCancelled(true);
             }
