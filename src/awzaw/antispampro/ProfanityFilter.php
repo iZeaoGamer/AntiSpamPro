@@ -161,7 +161,7 @@ class ProfanityFilter extends PluginBase {
      *
      * @return bool
      */
-    public function hasProfanity($string) {
+    public function hasProfanity($string): bool {
         if (empty($string)) {
             return false;
         }
@@ -191,7 +191,7 @@ class ProfanityFilter extends PluginBase {
      *
      * @return string
      */
-    public function obfuscateIfProfane($string) {
+    public function obfuscateIfProfane($string): string{
         if ($this->hasProfanity($string)) {
             $string = str_repeat("*", strlen($string));
         }
@@ -224,7 +224,7 @@ class ProfanityFilter extends PluginBase {
      *
      * @return bool
      */
-    private function stringHasProfanity($string, $profanity) {
+    private function stringHasProfanity($string, $profanity): bool {
         return preg_match($profanity, $string) === 1;
     }
 
@@ -253,7 +253,7 @@ class ProfanityFilter extends PluginBase {
      *
      * @return string
      */
-    private function generateSeparatorExpression() {
+    private function generateSeparatorExpression(): string{
         return $this->generateEscapedExpression($this->separatorCharacters, $this->escapedSeparatorCharacters);
     }
 
@@ -262,7 +262,7 @@ class ProfanityFilter extends PluginBase {
      *
      * @return array
      */
-    protected function generateCharacterExpressions() {
+    protected function generateCharacterExpressions(): array {
         $characterExpressions = array();
         foreach ($this->characterSubstitutions as $character => $substitutions) {
             $characterExpressions[$character] = $this->generateEscapedExpression(
