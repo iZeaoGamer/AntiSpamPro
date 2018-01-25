@@ -14,7 +14,7 @@ use pocketmine\command\CommandExecutor;
 use pocketmine\utils\TextFormat;
 use pocketmine\event\player\PlayerCommandPreprocessEvent;
 
-class AntiSpamPro extends PluginBase implements CommandExecutor, Listener {
+class Anti extends PluginBase implements CommandExecutor, Listener {
 
     private $players = [];
     public $profanityfilter;
@@ -23,15 +23,15 @@ class AntiSpamPro extends PluginBase implements CommandExecutor, Listener {
     {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         $this->saveDefaultConfig();
-        if ($this->getConfig()->get("antiswearwords") || $this->getConfig()->get("antirudenames")) {
-            $this->saveResource("swearwords.yml", false);
+        if ($this->getConfig()->get("antiwords") || $this->getConfig()->get("antirudenames")) {
+            $this->saveResource("antiwords.yml", false);
             $this->profanityfilter = new ProfanityFilter($this);
-            $this->getLogger()->info(TEXTFORMAT::GREEN . "AntiSpamPro Swear Filter Enabled");
+            $this->getLogger()->info(TEXTFORMAT::GREEN . "VM Anti Swear Filter Enabled");
         }
     }
 
     public function onChat(PlayerChatEvent $e) {
-        if ($e->isCancelled() || $e->getPlayer()->hasPermission("asp.bypass")) return;
+        if ($e->isCancelled() || $e->getPlayer()->hasPermission("anti.bypass")) return;
         if (isset($this->players[spl_object_hash($e->getPlayer())]) && (time() - $this->players[spl_object_hash($e->getPlayer())]["time"] <= intval($this->getConfig()->get("delay")))) {
             $this->players[spl_object_hash($e->getPlayer())]["time"] = time();
             $this->players[spl_object_hash($e->getPlayer())]["warnings"] = $this->players[spl_object_hash($e->getPlayer())]["warnings"] + 1;
@@ -174,7 +174,7 @@ class AntiSpamPro extends PluginBase implements CommandExecutor, Listener {
     public function onPlayerCommand(PlayerCommandPreprocessEvent $event) {
         if ($event->isCancelled()) return;
         $sender = $event->getPlayer();
-        if ($sender->hasPermission("asp.bypass")) return;
+        if ($sender->hasPermission("anti.bypass")) return;
         $message = $event->getMessage();
         if ($message{0} != "/") {
             return;
