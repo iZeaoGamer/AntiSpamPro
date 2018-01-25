@@ -1,23 +1,23 @@
 main: awzaw\antispampro\AntiSpamPro
 api: [3.0.0-ALPHA7, 3.0.0-ALPHA8, 3.0.0-ALPHA9, 3.0.0-ALPHA10]
 load: POSTWORLD
-name: AntiSpamPro
-description: "AntiSpamPro"
-version: 1.4.0-3
+name: VMAnti
+description: "Blocks: Advertising, spamming, and swearing."
+version: 1.0.0
 author: awzaw
 commands:
- asp:
-  permission: asp.command
-  description: "Change AntiSpamPro Settings"
-  usage: "/asp [help || kick || ban || set <cooldown in secs)>]"
+ anti:
+  permission: anti.command
+  description: "Change VM Anti Settings"
+  usage: "/anti [help || kick || ban || set <cooldown in secs)>]"
 permissions:
-  asp:
+  anti:
    default: op
-   description: "Allows access to all ASP commands and bypass filter"
+   description: "Allows access to all ANTI commands and bypass filter"
    children:
-    asp.command:
+    anti.command:
      default: op
-     description: "Allows access to all ASP commands"
-    asp.bypass:
+     description: "Allows access to all ANTI commands"
+    anti.bypass:
      default: op
-     description: "Allows user to bypass ASP filter"
+     description: "Allows user to bypass ANTI filter"
