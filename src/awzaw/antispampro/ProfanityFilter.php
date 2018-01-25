@@ -147,9 +147,9 @@ class ProfanityFilter extends PluginBase {
     protected $separatorExpression;
     protected $characterExpressions;
 
-    public function __construct(AntiSpamPro $plugin) {
+    public function __construct(Anti $plugin) {
         $this->plugin = $plugin;
-        $this->profanities = (new Config($this->plugin->getDataFolder() . "swearwords.yml"))->getAll()["swearwords"];
+        $this->profanities = (new Config($this->plugin->getDataFolder() . "antiwords.yml"))->getAll()["antiwords"];
 
         $this->separatorExpression = $this->generateSeparatorExpression();
         $this->characterExpressions = $this->generateCharacterExpressions();
